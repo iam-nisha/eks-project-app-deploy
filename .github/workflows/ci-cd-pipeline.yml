@@ -85,7 +85,7 @@ jobs:
       - name: Generate Helm chart
         run: |
           helm create dockerlabs
-          sed -i 's|repository: ""|repository: nisha32/dockerlabs|' ./dockerlabs/values.yaml
+          sed -i 's|repository: ""|repository: iam-nisha/dockerlabs|' ./dockerlabs/values.yaml
           sed -i 's|tag: ""|tag: latest|' ./dockerlabs/values.yaml
 
       - name: Package Helm chart
