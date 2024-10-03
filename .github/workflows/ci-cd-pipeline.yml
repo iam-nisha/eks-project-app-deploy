@@ -25,11 +25,11 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t emergencydevops/dockerlabs:latest .
+          docker build -t nisha32/dockerlabs:latest .
 
       - name: Tag Docker image
         run: |
-          docker tag emergencydevops/dockerlabs:latest emergencydevops/dockerlabs:${{ github.sha }}
+          docker tag nisha32/dockerlabs:latest nisha32/dockerlabs:${{ github.sha }}
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -62,8 +62,8 @@ jobs:
       
       - name: Push Docker image to Docker Hub
         run: |
-          docker push emergencydevops/dockerlabs:latest
-          docker push emergencydevops/dockerlabs:${{ github.sha }}
+          docker push nisha32/dockerlabs:latest
+          docker push nisha32/dockerlabs:${{ github.sha }}
 
   deploy:
     needs: build
@@ -85,7 +85,7 @@ jobs:
       - name: Generate Helm chart
         run: |
           helm create dockerlabs
-          sed -i 's|repository: ""|repository: emergencydevops/dockerlabs|' ./dockerlabs/values.yaml
+          sed -i 's|repository: ""|repository: nisha32/dockerlabs|' ./dockerlabs/values.yaml
           sed -i 's|tag: ""|tag: latest|' ./dockerlabs/values.yaml
 
       - name: Package Helm chart
